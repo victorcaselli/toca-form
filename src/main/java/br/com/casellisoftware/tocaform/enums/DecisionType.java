@@ -20,6 +20,16 @@ public enum DecisionType implements GlobalEnumeration {
         return code;
     }
 
+    @Override
+    public Object getEnum(Integer code) {
+        return toEnum(code);
+    }
+
+    @Override
+    public Object[] allValues() {
+        return DecisionType.values();
+    }
+
     public static DecisionType toEnum(Integer code){
         return (DecisionType) EnumerationUtil.toEnum(code, DecisionType.values());
     }

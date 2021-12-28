@@ -19,6 +19,16 @@ public enum WhatsappStatusType implements GlobalEnumeration {
         return code;
     }
 
+    @Override
+    public Object getEnum(Integer code) {
+        return toEnum(code);
+    }
+
+    @Override
+    public Object[] allValues() {
+        return WhatsappStatusType.values();
+    }
+
     public static WhatsappStatusType toEnum(Integer code){
         return (WhatsappStatusType) EnumerationUtil.toEnum(code, WhatsappStatusType.values());
     }

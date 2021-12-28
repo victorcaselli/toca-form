@@ -21,6 +21,16 @@ public enum ExceptionDefaultMessages implements GlobalEnumeration {
         return code;
     }
 
+    @Override
+    public Object getEnum(Integer code) {
+        return code;
+    }
+
+    @Override
+    public Object[] allValues() {
+        return new Object[0];
+    }
+
     public static ExceptionDefaultMessages toEnum(Integer code){
         return (ExceptionDefaultMessages) EnumerationUtil.toEnum(code, ExceptionDefaultMessages.values());
     }

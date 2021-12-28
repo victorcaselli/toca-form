@@ -23,6 +23,16 @@ public enum PhoneType implements GlobalEnumeration {
         return code;
     }
 
+    @Override
+    public Object getEnum(Integer code) {
+        return toEnum(code);
+    }
+
+    @Override
+    public Object[] allValues() {
+        return PhoneType.values();
+    }
+
     public static PhoneType toEnum(Integer code){
         return (PhoneType) EnumerationUtil.toEnum(code, PhoneType.values());
     }

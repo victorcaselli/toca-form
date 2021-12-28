@@ -19,6 +19,16 @@ public enum ChristeningStatusType implements GlobalEnumeration {
         return code;
     }
 
+    @Override
+    public Object getEnum(Integer code) {
+        return toEnum(code);
+    }
+
+    @Override
+    public Object[] allValues() {
+        return ChristeningStatusType.values();
+    }
+
     public static ChristeningStatusType toEnum(Integer code){
         return (ChristeningStatusType) EnumerationUtil.toEnum(code, ChristeningStatusType.values());
     }

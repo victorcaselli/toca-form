@@ -20,6 +20,16 @@ public enum ChurchStatusType implements GlobalEnumeration {
         return code;
     }
 
+    @Override
+    public Object getEnum(Integer code) {
+        return toEnum(code);
+    }
+
+    @Override
+    public Object[] allValues() {
+        return ChurchStatusType.values();
+    }
+
     public static ChurchStatusType toEnum(Integer code){
         return (ChurchStatusType) EnumerationUtil.toEnum(code, ChurchStatusType.values());
     }
