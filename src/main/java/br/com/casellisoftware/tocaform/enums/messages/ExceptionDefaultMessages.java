@@ -9,7 +9,9 @@ import lombok.Getter;
 @Getter
 public enum ExceptionDefaultMessages implements GlobalEnumeration {
 
-    DISCIPLE_NOT_FOUND(0, "Disciple not found");
+    DISCIPLE_NOT_FOUND(0, "Disciple object sought cannot be found."),
+    PHONE_NOT_FOUND(1, "Phone object sought cannot be found."),
+    ENTITY_NOT_FOUND(2, "Entity not found");
 
     private Integer code;
     private String description;

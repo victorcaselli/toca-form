@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static br.com.casellisoftware.tocaform.enums.messages.ExceptionDefaultMessages.DISCIPLE_NOT_FOUND;
+import static br.com.casellisoftware.tocaform.enums.messages.ExceptionDefaultMessages.*;
 
 //TODO - Change all returns from Phone to PhoneDto
 //TODO - Update method
@@ -30,7 +30,7 @@ public class PhoneService {
     @Transactional(readOnly = true)
     public Phone findById(Long id){
         return phoneRepository.findById(id)
-                .orElseThrow(() -> new PhoneNotFoundException(DISCIPLE_NOT_FOUND.getDescription()));
+                .orElseThrow(() -> new PhoneNotFoundException(PHONE_NOT_FOUND.getDescription()));
     }
 
     @Transactional
