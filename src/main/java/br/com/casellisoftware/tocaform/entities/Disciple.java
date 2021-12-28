@@ -3,6 +3,7 @@ package br.com.casellisoftware.tocaform.entities;
 import br.com.casellisoftware.tocaform.enums.ChristeningStatusType;
 import br.com.casellisoftware.tocaform.enums.ChurchStatusType;
 import br.com.casellisoftware.tocaform.enums.DecisionType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,7 +39,8 @@ public class Disciple implements Serializable {
     private Set<Integer> decisionType = new HashSet<>();
     private Integer churchStatus;
     private Integer christeningStatus;
-    @OneToMany(mappedBy = "disciple")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "disciple", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Phone> phones = new ArrayList<>();
     private String details;
 

@@ -2,6 +2,8 @@ package br.com.casellisoftware.tocaform.entities;
 
 import br.com.casellisoftware.tocaform.enums.PhoneType;
 import br.com.casellisoftware.tocaform.enums.WhatsappStatusType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,8 +28,9 @@ public class Phone implements Serializable {
     private Long number;
     private Integer phoneType;
     private Integer whatsapp;
+    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "id_disciple")
+    @JoinColumn(name = "id_disciple",nullable = false)
     private Disciple disciple;
 
     public Integer getPhoneType() {
