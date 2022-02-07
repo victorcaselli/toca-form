@@ -21,6 +21,7 @@ public class DiscipleController {
     public ResponseEntity<List<Disciple>> findAll(){
         return ResponseEntity.ok().body(discipleService.findAll());
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Disciple> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(discipleService.findById(id));

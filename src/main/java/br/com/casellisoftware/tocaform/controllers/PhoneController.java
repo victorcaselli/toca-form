@@ -22,6 +22,7 @@ public class PhoneController {
     public ResponseEntity<List<Phone>> findAll(){
         return ResponseEntity.ok().body(phoneService.findAll());
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Phone> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(phoneService.findById(id));
