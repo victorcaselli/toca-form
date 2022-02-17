@@ -35,8 +35,7 @@ public class Disciple implements Serializable {
     private LocalDate birthDate;
     private String address;
     private String district;
-    @ElementCollection
-    private Set<Integer> decisionType = new HashSet<>();
+    private Integer  decisionType;
     private Integer churchStatus;
     private Integer christeningStatus;
     @JsonManagedReference
@@ -44,14 +43,12 @@ public class Disciple implements Serializable {
     private List<Phone> phones = new ArrayList<>();
     private String details;
 
-    public List<Integer> getDecisionType(){
-        return decisionType.stream()
-                .map(decisionType -> DecisionType.toEnum(decisionType).getCode())
-                .collect(Collectors.toList());
+    public Integer getDecisionType(){
+        return DecisionType.toEnum(decisionType).getCode();
     }
 
     public void setDecisionType(Integer decisionType){
-        this.decisionType.add(DecisionType.toEnum(decisionType).getCode());
+        this.decisionType = DecisionType.toEnum(decisionType).getCode();
     }
 
     public Integer getChurchStatus() {

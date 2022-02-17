@@ -21,7 +21,7 @@ import javax.annotation.PostConstruct;
 public class ModelMapperUtil {
 
     private final ModelMapper modelMapper;
-    private ModelMapper staticModelMapper;
+    private static ModelMapper staticModelMapper;
 
     @PostConstruct
     public void initialize(){
@@ -34,7 +34,7 @@ public class ModelMapperUtil {
      * @param source source entity
      * @param destination destination class that will generate a new entity of the source entity
      */
-    public <S,D> D map(S source, Class<D> destination){
+    public static <S,D> D map(S source, Class<D> destination){
         return staticModelMapper.map(source,destination);
     }
 }

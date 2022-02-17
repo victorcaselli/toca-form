@@ -1,5 +1,6 @@
 package br.com.casellisoftware.tocaform.services;
 
+import br.com.casellisoftware.tocaform.dto.DiscipleDTOResponse;
 import br.com.casellisoftware.tocaform.entities.Disciple;
 import br.com.casellisoftware.tocaform.entities.Phone;
 import br.com.casellisoftware.tocaform.repositories.DiscipleRepository;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static br.com.casellisoftware.tocaform.enums.messages.ExceptionDefaultMessages.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 //TODO - Change all returns from Disciple to DiscipleDto
 //TODO - Update method
@@ -23,9 +25,11 @@ public class DiscipleService {
 
 
     @Transactional(readOnly = true)
-    public List<Disciple> findAll(){
+    public List<DiscipleDTOResponse> findAll(){
         //TODO - Change to pageable
-        return discipleRepository.findAll();
+        return discipleRepository.findAll()
+                .stream().map(DiscipleDTOResponse::toDto)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

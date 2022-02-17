@@ -1,5 +1,6 @@
 package br.com.casellisoftware.tocaform.controllers;
 
+import br.com.casellisoftware.tocaform.dto.DiscipleDTOResponse;
 import br.com.casellisoftware.tocaform.entities.Disciple;
 import br.com.casellisoftware.tocaform.services.DiscipleService;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +14,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/disciples")
+@CrossOrigin("*") //TODO - TEMPORARY
 public class DiscipleController {
 
     private final DiscipleService discipleService;
 
     @GetMapping
-    public ResponseEntity<List<Disciple>> findAll(){
+    public ResponseEntity<List<DiscipleDTOResponse>> findAll(){
         return ResponseEntity.ok().body(discipleService.findAll());
     }
 
