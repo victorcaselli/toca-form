@@ -8,3 +8,16 @@ spring:
   jpa:
     defer-datasource-initialization: true
     show-sql: true
+
+security:
+  oauth2:
+    client:
+      client-id: webtoca
+      client-secret: webtoca
+
+jwt:
+  secret: MY-JWT-SECRET
+  duration: 86400
+
+
+

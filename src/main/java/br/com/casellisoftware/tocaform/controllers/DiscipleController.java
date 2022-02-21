@@ -5,6 +5,8 @@ import br.com.casellisoftware.tocaform.entities.Disciple;
 import br.com.casellisoftware.tocaform.services.DiscipleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 import static br.com.casellisoftware.tocaform.util.UriUtil.getUri;
 
@@ -15,11 +17,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/disciples")
 @CrossOrigin("*") //TODO - TEMPORARY
+@PreAuthorize(value = "hasAnyRole('ADMIN')")
 public class DiscipleController {
 
     private final DiscipleService discipleService;
 
     @GetMapping
+    @PreAuthorize(value = "hasAnyRole('MASTER')")
     public ResponseEntity<List<DiscipleDTOResponse>> findAll(){
         return ResponseEntity.ok().body(discipleService.findAll());
     }
