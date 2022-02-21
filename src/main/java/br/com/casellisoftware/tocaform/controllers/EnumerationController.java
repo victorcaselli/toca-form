@@ -5,6 +5,7 @@ import br.com.casellisoftware.tocaform.enums.*;
 import br.com.casellisoftware.tocaform.services.EnumerationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/enums")
 @RequiredArgsConstructor
-@CrossOrigin
+@PreAuthorize(value = "hasAnyRole('ADMIN', 'PASTOR', 'LEADER')")
 public class EnumerationController {
 
     private final EnumerationService service;

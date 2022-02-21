@@ -24,9 +24,19 @@ values (null, '21','984848785',2,1,3);
 
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
+INSERT INTO tb_role (authority) VALUES ('ROLE_PASTOR');
+INSERT INTO tb_role (authority) VALUES ('ROLE_LEADER');
 
 INSERT INTO tb_user(username, password)
 values ('victor', '$2a$12$KBjw/Rd10UjKNFi0A4Uol.LuOKZjSmlyAZibF7Um0yE5t.G2IlZnS');
+INSERT INTO tb_user(username, password)
+values ('pastor', '$2a$12$KBjw/Rd10UjKNFi0A4Uol.LuOKZjSmlyAZibF7Um0yE5t.G2IlZnS');
+INSERT INTO tb_user(username, password)
+values ('lider', '$2a$12$KBjw/Rd10UjKNFi0A4Uol.LuOKZjSmlyAZibF7Um0yE5t.G2IlZnS');
 
 INSERT INTO tb_user_role(user_id, role_id)
 values (1, 1);
+INSERT INTO tb_user_role(user_id, role_id)
+values (2, 2);
+INSERT INTO tb_user_role(user_id, role_id)
+values (3, 3);

@@ -4,6 +4,7 @@ import br.com.casellisoftware.tocaform.entities.Phone;
 import br.com.casellisoftware.tocaform.services.PhoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import static br.com.casellisoftware.tocaform.util.UriUtil.getUri;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/phones")
+@PreAuthorize(value = "hasAnyRole('ADMIN', 'PASTOR', 'LEADER')")
 public class PhoneController {
 
     private final PhoneService phoneService;

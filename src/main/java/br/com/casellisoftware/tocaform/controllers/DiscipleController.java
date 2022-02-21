@@ -16,14 +16,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/disciples")
-@CrossOrigin("*") //TODO - TEMPORARY
-@PreAuthorize(value = "hasAnyRole('ADMIN')")
+@PreAuthorize(value = "hasAnyRole('ADMIN', 'PASTOR', 'LEADER')")
 public class DiscipleController {
 
     private final DiscipleService discipleService;
 
     @GetMapping
-    @PreAuthorize(value = "hasAnyRole('MASTER')")
     public ResponseEntity<List<DiscipleDTOResponse>> findAll(){
         return ResponseEntity.ok().body(discipleService.findAll());
     }
