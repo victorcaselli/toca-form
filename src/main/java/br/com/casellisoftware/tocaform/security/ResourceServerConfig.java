@@ -42,6 +42,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/api/users/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated();
 

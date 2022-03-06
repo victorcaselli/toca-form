@@ -1,0 +1,31 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/toca?schema=tocaform
+    username: tocadev
+    password: tocadev
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: tocadev.sql
+security:
+  oauth2:
+    client:
+      client-id: webtoca
+      client-secret: webtoca
+
+jwt:
+  secret: MY-JWT-SECRET
+  duration: 86400
+server:
+  port: ${PORT:8080}
+
+

@@ -37,6 +37,7 @@ public class DiscipleController {
         return ResponseEntity.created(getUri(disciple.getId())).body(disciple);
     }
 
+    @PreAuthorize(value = "hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id){
         discipleService.deleteById(id);

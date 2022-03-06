@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "tb_user")
+@Table(name = "tb_user", schema = "tocaform")
 public class User implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 7966414406455027068L;
@@ -27,15 +27,16 @@ public class User implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String username;
     private String password;
     private String name;
+    @Column(unique = true)
     private String email;;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name ="tb_user_role", joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    inverseJoinColumns = @JoinColumn(name = "role_id"), schema = "tocaform")
     private Set<Role> roles = new HashSet<>();
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

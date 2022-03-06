@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "tb_role")
+@Table(name = "tb_role", schema = "tocaform")
 public class Role implements Serializable {
     private static final long serialVersionUID = 7243670575885900773L;
 

@@ -33,6 +33,9 @@ INSERT INTO tb_user(username, password)
 values ('pastor', '$2a$12$KBjw/Rd10UjKNFi0A4Uol.LuOKZjSmlyAZibF7Um0yE5t.G2IlZnS');
 INSERT INTO tb_user(username, password)
 values ('lider', '$2a$12$KBjw/Rd10UjKNFi0A4Uol.LuOKZjSmlyAZibF7Um0yE5t.G2IlZnS');
+INSERT INTO tb_user(username, password)
+values ('tocamaster', '$2a$13$AfaM05AhA5.YANMpmjs3t.K/Dskl.ZA7AI/uGbnouzTbEoSDoq.Ha');
+
 
 INSERT INTO tb_user_role(user_id, role_id)
 values (1, 1);
@@ -40,3 +43,5 @@ INSERT INTO tb_user_role(user_id, role_id)
 values (2, 2);
 INSERT INTO tb_user_role(user_id, role_id)
 values (3, 3);
+INSERT INTO tb_user_role(user_id, role_id)
+values (4, 1);

@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Setter
 @Builder
 @Entity
-@Table(name = "tb_phone")
+@Table(name = "tb_phone", schema = "tocaform")
 public class Phone implements Serializable {
     private static final long serialVersionUID = -3345854559417725575L;
 

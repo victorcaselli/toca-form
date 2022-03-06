@@ -9,6 +9,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 @Setter
 @Builder
 @Entity
-@Table(name = "tb_disciple")
+@Table(name = "tb_disciple", schema = "tocaform")
 public class Disciple implements Serializable {
     private static final long serialVersionUID = 2030386131859462656L;
 
@@ -42,6 +43,7 @@ public class Disciple implements Serializable {
     @OneToMany(mappedBy = "disciple", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Phone> phones = new ArrayList<>();
     private String details;
+    private LocalDateTime createAt;
 
     public Integer getDecisionType(){
         return DecisionType.toEnum(decisionType).getCode();

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import static br.com.casellisoftware.tocaform.enums.messages.ExceptionDefaultMessages.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,9 @@ public class DiscipleService {
 
     @Transactional
     public Disciple save(Disciple disciple){
+
+        disciple.setCreateAt(LocalDateTime.now());
+
         return discipleRepository.save(disciple);
     }
 

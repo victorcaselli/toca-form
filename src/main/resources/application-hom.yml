@@ -1,0 +1,25 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://ec2-3-209-61-239.compute-1.amazonaws.com:5432/d2gjk0kdrtrif5?schema=tocaformhom
+    username: ${HOM_USER}
+    password: ${HOM_PASS}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    defer-datasource-initialization: false
+
+security:
+  oauth2:
+    client:
+      client-id: webtoca
+      client-secret: webtoca
+
+jwt:
+  secret: MY-JWT-SECRET
+  duration: 86400
+server:
+  port: ${PORT:8080}
+
+
