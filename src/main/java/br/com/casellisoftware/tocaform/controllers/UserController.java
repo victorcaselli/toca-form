@@ -1,5 +1,6 @@
 package br.com.casellisoftware.tocaform.controllers;
 
+import br.com.casellisoftware.tocaform.dto.ReleaseGateDTO;
 import br.com.casellisoftware.tocaform.dto.UserDTO;
 import br.com.casellisoftware.tocaform.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,12 @@ public class UserController {
 
         userService.deleteById(id);
 
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/release")
+    public ResponseEntity<Void> releaseGate(@RequestBody ReleaseGateDTO rgDTo){
+        this.userService.releaseGate(rgDTo);
         return ResponseEntity.noContent().build();
     }
 }

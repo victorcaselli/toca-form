@@ -1,5 +1,8 @@
 
 spring:
+  mvc:
+    format:
+      date-time: dd/MM/yyyy hh:mm:ss
   datasource:
     url: jdbc:postgresql://ec2-3-209-61-239.compute-1.amazonaws.com:5432/d2gjk0kdrtrif5?schema=tocaformhom
     username: ${HOM_USER}
