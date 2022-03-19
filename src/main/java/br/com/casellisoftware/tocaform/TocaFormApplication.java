@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TocaFormApplication {
 
     public static void main(String[] args) {
+        //TODO - Temporary
+        System.setProperty("user.timezone", "America/Sao_Paulo");
+
         SpringApplication.run(TocaFormApplication.class, args);
     }
 
