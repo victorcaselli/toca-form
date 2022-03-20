@@ -5,15 +5,16 @@ import br.com.casellisoftware.tocaform.enums.*;
 import br.com.casellisoftware.tocaform.services.EnumerationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/enums")
 @RequiredArgsConstructor
-@PreAuthorize(value = "hasAnyRole('ADMIN', 'PASTOR', 'LEADER')")
 public class EnumerationController {
 
     private final EnumerationService service;
@@ -24,7 +25,8 @@ public class EnumerationController {
             @RequestParam(required = false) Boolean church,
             @RequestParam(required = false) Boolean decision,
             @RequestParam(required = false) Boolean phone,
-            @RequestParam(required = false) Boolean whatsapp
+            @RequestParam(required = false) Boolean whatsapp,
+            @RequestParam(required = false) Boolean visitor
     ){
         if(christening != null && christening) {
             return ResponseEntity.ok().body(service.getAll(ChristeningStatusType.values()));
@@ -39,5 +41,11 @@ public class EnumerationController {
         }
 
         return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping("/visitors")
+    public ResponseEntity<List<EnumerationEntity>> getVisitorType(){
+        return ResponseEntity.ok().body(service.getAll(VisitorType.values()));
     }
 }

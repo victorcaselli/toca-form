@@ -6,12 +6,11 @@ import br.com.casellisoftware.tocaform.services.DiscipleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.bind.annotation.*;
-import static br.com.casellisoftware.tocaform.util.UriUtil.getUri;
 
-import java.net.URI;
 import java.util.List;
+
+import static br.com.casellisoftware.tocaform.util.UriUtil.getUri;
 //TODO - Change Disciple to DiscipleDto
 @RequiredArgsConstructor
 @RestController
@@ -44,4 +43,11 @@ public class DiscipleController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<DiscipleDTOResponse>> findAllByParams(
+            @RequestParam(value = "name", required = false) String name
+            ){
+
+        return ResponseEntity.ok().body(discipleService.findAllByParams(name));
+    }
 }
