@@ -1,10 +1,11 @@
 package br.com.casellisoftware.tocaform.controllers;
 
 import br.com.casellisoftware.tocaform.dto.VisitorDTO;
+import br.com.casellisoftware.tocaform.entities.AppConfiguration;
+import br.com.casellisoftware.tocaform.services.ConfigurationService;
 import br.com.casellisoftware.tocaform.services.VisitorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class VisitorController {
 
     private final VisitorService visitorService;
+    private final ConfigurationService configurationService;
 
     @GetMapping
     public ResponseEntity<List<VisitorDTO>> findAll(){
@@ -25,6 +27,16 @@ public class VisitorController {
 
     @PostMapping
     public ResponseEntity<VisitorDTO> save(@RequestBody VisitorDTO visitorDTO){
+
+        //TODO - Change to better response
+        AppConfiguration config = configurationService.findConfiguration();
+        System.out.println(config);
+        System.out.println(config.getState());
+        System.out.println(config.getVisitorsScreen());
+        if(!config.getState() || (config.getState() && config.getVisitorsScreen())){
+            return ResponseEntity.badRequest().build();
+        }
+
         visitorDTO = visitorService.save(visitorDTO);
 
         URI uri = ServletUriComponentsBuilder
