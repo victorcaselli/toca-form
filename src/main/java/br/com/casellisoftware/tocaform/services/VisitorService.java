@@ -6,7 +6,6 @@ import br.com.casellisoftware.tocaform.entities.Visitor;
 import br.com.casellisoftware.tocaform.repositories.UserRepository;
 import br.com.casellisoftware.tocaform.repositories.VisitorRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,8 +48,8 @@ public class VisitorService {
                 .createAt(LocalDateTime.now())
                 .name(visitor.getName())
                 .visitor(visitor)
-                        .createdBy(userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
-                                .orElseThrow(() -> new IllegalArgumentException("User not found")))
+//                        .createdBy(userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+//                                .orElseThrow(() -> new IllegalArgumentException("User not found")))
 
                 .build());
 
