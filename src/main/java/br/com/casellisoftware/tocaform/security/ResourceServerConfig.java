@@ -34,12 +34,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/api/users/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST,"/api/visitors").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/visitors/**").hasAnyRole("ADMIN", "PASTOR", "LEADER")
-                .antMatchers(HttpMethod.GET, "/api/enums/visitors").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/enums").hasAnyRole("ADMIN", "PASTOR", "LEADER")
-                .anyRequest()
-                .authenticated();
+                .antMatchers(HttpMethod.POST,"/api/disciples").hasAnyRole("ADMIN", "DISCIPLE_RECORDER", "PASTOR")
+                .antMatchers(HttpMethod.GET, "/api/disciples/**").hasAnyRole("ADMIN", "PASTOR", "DISCIPLE_FINDER")
+                .antMatchers(HttpMethod.DELETE, "/api/disciples/{id}").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/visitors").hasAnyRole("VISITOR_RECORDER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/visitors/**").hasAnyRole("VISITOR_FINDER")
+                .anyRequest().authenticated();
 
         http.cors().configurationSource(corsConfigurationSource);
     }

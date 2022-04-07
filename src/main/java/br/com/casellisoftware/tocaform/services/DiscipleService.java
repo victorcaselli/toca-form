@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static br.com.casellisoftware.tocaform.dto.DiscipleDTOResponse.toDto;
 import static br.com.casellisoftware.tocaform.enums.messages.ExceptionDefaultMessages.DISCIPLE_NOT_FOUND;
 
 //TODO - Change all returns from Disciple to DiscipleDto
@@ -33,9 +34,11 @@ public class DiscipleService {
     }
 
     @Transactional(readOnly = true)
-    public Disciple findById(Long id){
-        return discipleRepository.findById(id)
-                .orElseThrow(() -> new DiscipleNotFoundException(DISCIPLE_NOT_FOUND.getDescription()));
+    public DiscipleDTOResponse findById(Long id){
+        return toDto(
+                discipleRepository.findById(id)
+                .orElseThrow(() -> new DiscipleNotFoundException(DISCIPLE_NOT_FOUND.getDescription()))
+        );
     }
 
     @Transactional

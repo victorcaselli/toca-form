@@ -5,7 +5,6 @@ import br.com.casellisoftware.tocaform.entities.Disciple;
 import br.com.casellisoftware.tocaform.services.DiscipleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +14,6 @@ import static br.com.casellisoftware.tocaform.util.UriUtil.getUri;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/disciples")
-@PreAuthorize(value = "hasAnyRole('ADMIN', 'PASTOR', 'LEADER')")
 public class DiscipleController {
 
     private final DiscipleService discipleService;
@@ -26,7 +24,7 @@ public class DiscipleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Disciple> findById(@PathVariable Long id){
+    public ResponseEntity<DiscipleDTOResponse> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(discipleService.findById(id));
     }
 
@@ -36,7 +34,7 @@ public class DiscipleController {
         return ResponseEntity.created(getUri(disciple.getId())).body(disciple);
     }
 
-    @PreAuthorize(value = "hasAnyRole('ADMIN')")
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id){
         discipleService.deleteById(id);

@@ -26,6 +26,7 @@ public class UserDTO implements Serializable {
     @JsonIgnore
     private Long id;
     private String username;
+    @JsonIgnore
     private String password;
     private String name;
     private String email;

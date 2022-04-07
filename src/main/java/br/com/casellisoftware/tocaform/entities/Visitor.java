@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,10 +21,13 @@ public class Visitor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private LocalDate birthDate;
+    private String birthDate;
     private Boolean firstTime;
     private Integer visitorType;
     private String phone;
+    @OneToOne
+    private Disciple disciple;
+    private LocalDateTime createdAt;
 
     public Integer getVisitorType(){
         return VisitorType.toEnum(visitorType).getCode();

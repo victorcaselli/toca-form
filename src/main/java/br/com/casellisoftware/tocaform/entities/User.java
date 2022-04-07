@@ -1,7 +1,7 @@
 package br.com.casellisoftware.tocaform.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Data
 @Entity
 @Table(name = "tb_user", schema = "tocaform")
+@Builder
 public class User implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 7966414406455027068L;
@@ -40,6 +41,8 @@ public class User implements UserDetails, Serializable {
     private Set<Role> roles = new HashSet<>();
     @OneToMany(mappedBy = "user")
     private List<Doorman> doormen;
+    @OneToMany(mappedBy = "createdBy")
+    private List<Disciple> disciples;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

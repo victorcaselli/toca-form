@@ -3,6 +3,8 @@ package br.com.casellisoftware.tocaform.dto;
 import br.com.casellisoftware.tocaform.entities.Visitor;
 import br.com.casellisoftware.tocaform.enums.VisitorType;
 import br.com.casellisoftware.tocaform.util.ModelMapperUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +27,10 @@ public class VisitorDTO implements Serializable {
     private Boolean firstTime;
     private Integer visitorType;
     private String phone;
+    @JsonIgnore
+    private DiscipleDTOResponse disciple;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private LocalDateTime createdAt;
 
 
     public static VisitorDTO toDto(Visitor visitor){

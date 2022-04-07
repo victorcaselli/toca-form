@@ -3,18 +3,13 @@ package br.com.casellisoftware.tocaform.entities;
 import br.com.casellisoftware.tocaform.enums.ChristeningStatusType;
 import br.com.casellisoftware.tocaform.enums.ChurchStatusType;
 import br.com.casellisoftware.tocaform.enums.DecisionType;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 //TODO - COMMENTS ABOUT THIS CLASS
 @SuppressWarnings({"JpaDataSourceORMInspection", "unused"})
@@ -33,20 +28,29 @@ public class Disciple implements Serializable {
     private Long id;
     private String name;
     private Integer age;
-    private LocalDate birthDate;
+    private String birthDate;
     private String address;
     private String district;
     private Integer  decisionType;
     private Integer churchStatus;
     private Integer christeningStatus;
-    @JsonManagedReference
-    @OneToMany(mappedBy = "disciple", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<Phone> phones = new ArrayList<>();
+    @ElementCollection
+    private List<String> phones = new ArrayList<>();
     private String details;
     private LocalDateTime createAt;
+    @OneToOne
+    @JoinColumn(name = "visitor_id")
+    private Visitor visitor;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User createdBy;
 
     public Integer getDecisionType(){
-        return DecisionType.toEnum(decisionType).getCode();
+        try{
+            return DecisionType.toEnum(decisionType).getCode();
+        }catch (IllegalArgumentException e){
+            return null;
+        }
     }
 
     public void setDecisionType(Integer decisionType){
@@ -54,7 +58,11 @@ public class Disciple implements Serializable {
     }
 
     public Integer getChurchStatus() {
-        return ChurchStatusType.toEnum(churchStatus).getCode();
+        try{
+            return ChurchStatusType.toEnum(churchStatus).getCode();
+        }catch (IllegalArgumentException e){
+            return null;
+        }
     }
 
     public void setChurchStatus(Integer churchStatus){
@@ -62,7 +70,11 @@ public class Disciple implements Serializable {
     }
 
     public Integer getChristeningStatus(){
-        return ChristeningStatusType.toEnum(christeningStatus).getCode();
+        try{
+            return ChristeningStatusType.toEnum(christeningStatus).getCode();
+        }catch (IllegalArgumentException e){
+            return null;
+        }
     }
 
     public void setChristeningStatus(Integer christeningStatus){

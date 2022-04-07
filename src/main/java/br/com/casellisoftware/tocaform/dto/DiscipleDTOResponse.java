@@ -1,22 +1,16 @@
 package br.com.casellisoftware.tocaform.dto;
 
 import br.com.casellisoftware.tocaform.entities.Disciple;
-import br.com.casellisoftware.tocaform.entities.Phone;
 import br.com.casellisoftware.tocaform.enums.ChristeningStatusType;
 import br.com.casellisoftware.tocaform.enums.ChurchStatusType;
 import br.com.casellisoftware.tocaform.enums.DecisionType;
 import br.com.casellisoftware.tocaform.util.ModelMapperUtil;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-
-import java.util.List;
 
 
 @AllArgsConstructor
@@ -36,21 +30,34 @@ public class DiscipleDTOResponse implements Serializable {
     private Integer decisionType;
     private Integer churchStatus;
     private Integer christeningStatus;
-    private List<Phone> phones = new ArrayList<>();
     private String details;
+    private VisitorDTO visitor;
+    private UserDTO createdBy;
 
 
     public String getDecisionType() {
-        return DecisionType.toEnum(decisionType).getDescription();
+        try{
+            return DecisionType.toEnum(decisionType).getDescription();
+        }catch (IllegalArgumentException e){
+            return null;
+        }
     }
 
     public String getChurchStatus() {
-        return ChurchStatusType.toEnum(churchStatus).getDescription();
+        try{
+            return ChurchStatusType.toEnum(churchStatus).getDescription();
+        }catch (IllegalArgumentException e){
+            return null;
+        }
     }
 
 
     public String getChristeningStatus() {
-        return ChristeningStatusType.toEnum(christeningStatus).getDescription();
+        try{
+            return ChristeningStatusType.toEnum(christeningStatus).getDescription();
+        }catch (IllegalArgumentException e){
+            return null;
+        }
     }
 
 
