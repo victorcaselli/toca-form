@@ -8,8 +8,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 //TODO - COMMENTS ABOUT THIS CLASS
 @SuppressWarnings({"JpaDataSourceORMInspection", "unused"})
@@ -33,8 +31,6 @@ public class Disciple implements Serializable {
     private Integer  decisionType;
     private Integer churchStatus;
     private Integer christeningStatus;
-    @ElementCollection
-    private List<String> phones = new ArrayList<>();
     private String details;
     private LocalDateTime createAt;
     @OneToOne
@@ -43,6 +39,7 @@ public class Disciple implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User createdBy;
+    private String phone;
 
     public Integer getDecisionType(){
         try{

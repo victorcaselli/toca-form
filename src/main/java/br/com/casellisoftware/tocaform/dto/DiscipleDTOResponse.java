@@ -31,6 +31,7 @@ public class DiscipleDTOResponse implements Serializable {
     private String details;
     private VisitorDTO visitor;
     private UserDTO createdBy;
+    private String phone;
 
 
     public String getDecisionType() {
