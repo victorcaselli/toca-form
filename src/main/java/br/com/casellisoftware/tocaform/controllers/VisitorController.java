@@ -33,7 +33,7 @@ public class VisitorController {
         System.out.println(config);
         System.out.println(config.getState());
         System.out.println(config.getVisitorsScreen());
-        if(!config.getState() || (config.getState() && config.getVisitorsScreen())){
+        if(!config.getState() || (config.getState() && !config.getVisitorsScreen())){
             return ResponseEntity.badRequest().build();
         }
 
