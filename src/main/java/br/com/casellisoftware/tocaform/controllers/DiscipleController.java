@@ -48,4 +48,10 @@ public class DiscipleController {
 
         return ResponseEntity.ok().body(discipleService.findAllByParams(name));
     }
+
+    @DeleteMapping("/all")
+    public ResponseEntity<Void> deleteAll(){
+        this.discipleService.deleteAll();
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -10,7 +10,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 
 @AllArgsConstructor
@@ -23,8 +22,7 @@ public class DiscipleDTOResponse implements Serializable {
 
     private Long id;
     private String name;
-    private Integer age;
-    private LocalDate birthDate;
+    private String birthDate;
     private String address;
     private String district;
     private Integer decisionType;

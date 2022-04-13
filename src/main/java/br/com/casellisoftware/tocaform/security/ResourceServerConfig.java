@@ -37,6 +37,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/api/disciples").hasAnyRole("ADMIN", "DISCIPLE_RECORDER", "PASTOR")
                 .antMatchers(HttpMethod.GET, "/api/disciples/**").hasAnyRole("ADMIN", "PASTOR", "DISCIPLE_FINDER")
                 .antMatchers(HttpMethod.DELETE, "/api/disciples/{id}").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/disciples/all").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/visitors").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/visitors/**").hasAnyRole("VISITOR_FINDER")
                 .antMatchers(HttpMethod.GET, "/api/enums/visitors").permitAll()

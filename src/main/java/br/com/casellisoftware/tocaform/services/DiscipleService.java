@@ -4,6 +4,7 @@ import br.com.casellisoftware.tocaform.dto.DiscipleDTOResponse;
 import br.com.casellisoftware.tocaform.entities.Disciple;
 import br.com.casellisoftware.tocaform.repositories.DiscipleRepository;
 import br.com.casellisoftware.tocaform.services.exceptions.DiscipleNotFoundException;
+import br.com.casellisoftware.tocaform.util.EnvironmentUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,7 @@ import static br.com.casellisoftware.tocaform.enums.messages.ExceptionDefaultMes
 public class DiscipleService {
 
     private final DiscipleRepository discipleRepository;
+    private final EnvironmentUtil environmentUtil;
 
 
     @Transactional(readOnly = true)
@@ -66,5 +68,12 @@ public class DiscipleService {
                 .stream()
                 .map(DiscipleDTOResponse::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void deleteAll(){
+        if(environmentUtil.getProfileByName("hom")){
+            this.discipleRepository.deleteAll();
+        }
     }
 }

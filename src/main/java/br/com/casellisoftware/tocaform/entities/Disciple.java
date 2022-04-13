@@ -27,7 +27,6 @@ public class Disciple implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Integer age;
     private String birthDate;
     private String address;
     private String district;
