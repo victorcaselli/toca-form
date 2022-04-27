@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @Entity
-@Table(name = "tb_doorman")
+@Table(name = "tb_doorman",schema = "tocaform")
 public class Doorman implements Serializable {
 
     private static final long serialVersionUID = 2679086004932738350L;

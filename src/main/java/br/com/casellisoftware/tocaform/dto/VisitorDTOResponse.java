@@ -11,19 +11,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class VisitorDTO implements Serializable {
+public class VisitorDTOResponse implements Serializable {
     private static final long serialVersionUID = -5837469587224837528L;
 
     private Long id;
     private String name;
-    private LocalDate birthDate;
+    private String birthDate;
     private Boolean firstTime;
     private Integer visitorType;
     private String phone;
@@ -33,8 +32,8 @@ public class VisitorDTO implements Serializable {
     private LocalDateTime createdAt;
 
 
-    public static VisitorDTO toDto(Visitor visitor){
-        return ModelMapperUtil.map(visitor, VisitorDTO.class);
+    public static VisitorDTOResponse toDto(Visitor visitor){
+        return ModelMapperUtil.map(visitor, VisitorDTOResponse.class);
     }
 
     public Visitor toEntity(){
@@ -42,8 +41,8 @@ public class VisitorDTO implements Serializable {
     }
 
 
-    public Integer getVisitorType(){
-        return VisitorType.toEnum(visitorType).getCode();
+    public String getVisitorType(){
+        return VisitorType.toEnum(visitorType).getDescription();
     }
 
     public void setVisitorType(Integer code){

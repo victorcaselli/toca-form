@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @Entity
-@Table(name = "tb_visitor")
+@Table(name = "tb_visitor", schema = "tocaform")
 public class Visitor implements Serializable {
     private static final long serialVersionUID = -6017966800630916002L;
 
@@ -25,9 +25,10 @@ public class Visitor implements Serializable {
     private Boolean firstTime;
     private Integer visitorType;
     private String phone;
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     private Disciple disciple;
     private LocalDateTime createdAt;
+    private boolean visitorState;
 
     public Integer getVisitorType(){
         return VisitorType.toEnum(visitorType).getCode();

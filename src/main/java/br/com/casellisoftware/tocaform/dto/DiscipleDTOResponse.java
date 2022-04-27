@@ -29,7 +29,7 @@ public class DiscipleDTOResponse implements Serializable {
     private Integer churchStatus;
     private Integer christeningStatus;
     private String details;
-    private VisitorDTO visitor;
+    private VisitorDTOResponse visitor;
     private UserDTO createdBy;
     private String phone;
 

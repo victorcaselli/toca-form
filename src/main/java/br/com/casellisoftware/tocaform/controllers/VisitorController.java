@@ -1,6 +1,7 @@
 package br.com.casellisoftware.tocaform.controllers;
 
-import br.com.casellisoftware.tocaform.dto.VisitorDTO;
+import br.com.casellisoftware.tocaform.dto.VisitorDTORequest;
+import br.com.casellisoftware.tocaform.dto.VisitorDTOResponse;
 import br.com.casellisoftware.tocaform.entities.AppConfiguration;
 import br.com.casellisoftware.tocaform.services.ConfigurationService;
 import br.com.casellisoftware.tocaform.services.VisitorService;
@@ -21,30 +22,48 @@ public class VisitorController {
     private final ConfigurationService configurationService;
 
     @GetMapping
-    public ResponseEntity<List<VisitorDTO>> findAll(){
+    public ResponseEntity<List<VisitorDTOResponse>> findAll(){
         return ResponseEntity.ok().body(visitorService.findAll());
     }
 
     @PostMapping
-    public ResponseEntity<VisitorDTO> save(@RequestBody VisitorDTO visitorDTO){
+    public ResponseEntity<VisitorDTORequest> save(@RequestBody VisitorDTORequest visitorDTORequest){
 
         //TODO - Change to better response
         AppConfiguration config = configurationService.findConfiguration();
-        System.out.println(config);
-        System.out.println(config.getState());
-        System.out.println(config.getVisitorsScreen());
         if(!config.getState() || (config.getState() && !config.getVisitorsScreen())){
             return ResponseEntity.badRequest().build();
         }
 
-        visitorDTO = visitorService.save(visitorDTO);
+        visitorDTORequest = visitorService.save(visitorDTORequest);
 
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(visitorDTO.getId())
+                .buildAndExpand(visitorDTORequest.getId())
                 .toUri();
 
-        return ResponseEntity.created(uri).body(visitorDTO);
+        return ResponseEntity.created(uri).body(visitorDTORequest);
+    }
+
+
+    @GetMapping("disciple/{id}")
+    public ResponseEntity<Void> createDiscipleFromVisitor(@PathVariable(name = "id") Long visitorsId){
+        visitorService.createDiscipleFromVisitor(visitorsId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable(name = "id") Long visitorsId){
+        visitorService.deleteById(visitorsId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<VisitorDTOResponse>> findAllByParams(
+            @RequestParam(value = "name", required = false) String name
+    ){
+
+        return ResponseEntity.ok().body(visitorService.findAllByParams(name));
     }
 }
